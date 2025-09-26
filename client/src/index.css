@@ -1,0 +1,248 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global placeholder opacity */
+@layer base {
+  input::placeholder,
+  textarea::placeholder {
+    opacity: 0.01;
+    color: inherit; /* keep placeholder color aligned with text color */
+  }
+  /* Vendor prefixes for broader support */
+  input::-webkit-input-placeholder,
+  textarea::-webkit-input-placeholder { opacity: 0.01; color: inherit; }
+  input::-moz-placeholder,
+  textarea::-moz-placeholder { opacity: 0.01; color: inherit; }
+  input:-ms-input-placeholder,
+  textarea:-ms-input-placeholder { opacity: 0.01; color: inherit; }
+  input::-ms-input-placeholder,
+  textarea::-ms-input-placeholder { opacity: 0.01; color: inherit; }
+}
+
+html, body, #root {
+  height: 100%;
+  min-height: 100vh; /* ensure full viewport coverage */
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #ffffff; /* high contrast over warm/dark background */
+  font-weight: 700; /* bold text for readability */
+  /* Full-page background image */
+  background-image: url('./Images/lbg.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: scroll; /* fixed can cause cropping on some devices */
+  background-size: cover !important; /* fill viewport without letterboxing */
+  background-color: #0b0b0b; /* fill empty space if image doesn't cover */
+}
+
+/* Mobile background override */
+@media (max-width: 768px) {
+  body {
+    background-image: url('./Images/lbgm.png');
+    background-attachment: scroll; /* improve perf on mobile */
+    background-size: cover !important; /* fill viewport on mobile */
+    background-position: center center;
+  }
+}
+
+/* Optional: tweak focal point for very tall screens */
+@media (max-aspect-ratio: 9/16) {
+  body { background-position: center top; }
+}
+
+/* Golden light animations to complement background */
+.golden-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Subtle light rays */
+.light-ray {
+  position: absolute;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 215, 120, 0.15) 0%,
+    rgba(255, 215, 120, 0.05) 40%,
+    rgba(255, 215, 120, 0) 70%
+  );
+  border-radius: 50%;
+  opacity: 0;
+  transform-origin: center;
+  animation: pulse-glow 8s ease-in-out infinite;
+}
+
+.light-ray:nth-child(1) {
+  top: 15%;
+  right: 10%;
+  width: 60vw;
+  height: 60vw;
+  animation-delay: 0s;
+}
+
+.light-ray:nth-child(2) {
+  bottom: 10%;
+  left: 5%;
+  width: 50vw;
+  height: 50vw;
+  animation-delay: 2s;
+}
+
+.light-ray:nth-child(3) {
+  top: 40%;
+  left: 25%;
+  width: 70vw;
+  height: 70vw;
+  animation-delay: 4s;
+}
+
+/* Floating particles */
+.gold-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 215, 120, 0.6);
+  border-radius: 50%;
+  box-shadow: 0 0 10px 2px rgba(255, 215, 120, 0.3);
+  opacity: 0;
+  animation: float-particle 15s ease-in-out infinite;
+}
+
+.gold-particle:nth-child(4) {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.gold-particle:nth-child(5) {
+  top: 30%;
+  right: 20%;
+  animation-delay: 3s;
+}
+
+.gold-particle:nth-child(6) {
+  bottom: 15%;
+  right: 10%;
+  animation-delay: 6s;
+}
+
+.gold-particle:nth-child(7) {
+  bottom: 30%;
+  left: 15%;
+  animation-delay: 9s;
+}
+
+.gold-particle:nth-child(8) {
+  top: 50%;
+  left: 50%;
+  animation-delay: 12s;
+}
+
+/* Subtle lens flare */
+.lens-flare {
+  position: absolute;
+  top: 20%;
+  right: 15%;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 215, 120, 0.2) 30%,
+    rgba(255, 215, 120, 0) 70%
+  );
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(3px);
+  animation: flare-pulse 10s ease-in-out infinite;
+}
+
+/* Animation keyframes */
+@keyframes pulse-glow {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 0.5; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.8); }
+}
+
+@keyframes float-particle {
+  0% { 
+    opacity: 0;
+    transform: translateY(0) translateX(0);
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% { 
+    opacity: 0;
+    transform: translateY(-100px) translateX(50px);
+  }
+}
+
+@keyframes flare-pulse {
+  0% { opacity: 0; }
+  30% { opacity: 0.7; }
+  70% { opacity: 0.7; }
+  100% { opacity: 0; }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .light-ray,
+  .gold-particle,
+  .lens-flare {
+    animation: none !important;
+    opacity: 0.3;
+  }
+}
+
+@layer components {
+  .input-field {
+    @apply w-full px-4 py-3 bg-white/[0.01] backdrop-blur-0 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent text-white placeholder-gray-400 transition-all duration-300;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-gray-300 mb-2;
+  }
+  
+  .error-message {
+    @apply text-red-400 text-xs mt-1;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-secondary to-accent hover:from-accent hover:to-secondary text-dark font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-secondary/30;
+  }
+  
+  .btn-success {
+    @apply bg-gradient-to-r from-success to-emerald-600 hover:from-emerald-600 hover:to-success text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-dark;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-secondary rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent;
+  }
+}
