@@ -36,8 +36,7 @@ const EnhancedApplicationForm: React.FC = () => {
     rehabFundingNeeded: '',
     loanTerm: '',
     additionalInfo: '',
-    consentTransactional: false,
-    consentMarketing: false,
+    consent: false,
   };
 
   const creditScoreOptions = [
@@ -329,25 +328,14 @@ const EnhancedApplicationForm: React.FC = () => {
               <label className="flex items-start text-gray-300">
                 <Field
                   type="checkbox"
-                  name="consentTransactional"
+                  name="consent"
                   className="mr-2 mt-1 text-secondary focus:ring-secondary"
                 />
                 <span className="text-sm">
-                  I consent to receive transactional communications via email, SMS, and phone calls *
+                  I consent to receive transactional and marketing communications via email, SMS, and phone calls *
                 </span>
               </label>
-              <ErrorMessage name="consentTransactional" component="div" className="error-message" />
-
-              <label className="flex items-start text-gray-300">
-                <Field
-                  type="checkbox"
-                  name="consentMarketing"
-                  className="mr-2 mt-1 text-secondary focus:ring-secondary"
-                />
-                <span className="text-sm">
-                  I consent to receive marketing communications (optional)
-                </span>
-              </label>
+              <ErrorMessage name="consent" component="div" className="error-message" />
             </div>
           </div>
         );
