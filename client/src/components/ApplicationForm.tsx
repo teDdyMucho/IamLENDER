@@ -33,8 +33,7 @@ const ApplicationForm: React.FC = () => {
     rehabFundingNeeded: '',
     loanTerm: '',
     additionalInfo: '',
-    consentTransactional: false,
-    consentMarketing: false,
+    consent: false,
   };
 
   const creditScoreOptions = [
@@ -399,23 +398,12 @@ const ApplicationForm: React.FC = () => {
                   <label className="inline-flex items-center">
                     <Field 
                       type="checkbox" 
-                      name="consentTransactional" 
+                      name="consent" 
                       className="form-checkbox h-4 w-4 text-primary" 
                     />
-                    <span className="ml-2">I agree to receive transactional messages. *</span>
+                    <span className="ml-2">I consent to receive transactional and marketing communications via email, SMS, and phone calls *</span>
                   </label>
-                  <ErrorMessage name="consentTransactional" component="div" className="error-message" />
-                </div>
-
-                <div>
-                  <label className="inline-flex items-center">
-                    <Field 
-                      type="checkbox" 
-                      name="consentMarketing" 
-                      className="form-checkbox h-4 w-4 text-primary" 
-                    />
-                    <span className="ml-2">I agree to receive marketing/promotional messages.</span>
-                  </label>
+                  <ErrorMessage name="consent" component="div" className="error-message" />
                 </div>
               </div>
             </div>

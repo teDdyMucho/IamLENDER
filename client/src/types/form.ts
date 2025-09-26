@@ -18,6 +18,5 @@ export interface FormValues {
   rehabFundingNeeded: string;
   loanTerm: string;
   additionalInfo: string;
-  consentTransactional: boolean;
-  consentMarketing: boolean;
+  consent: boolean;
 }

@@ -69,8 +69,6 @@ export const applicationFormSchema = Yup.object().shape({
   
   additionalInfo: Yup.string(),
   
-  consentTransactional: Yup.boolean()
-    .oneOf([true], 'You must consent to receive transactional messages'),
-  
-  consentMarketing: Yup.boolean(),
+  consent: Yup.boolean()
+    .oneOf([true], 'You must consent to receive messages'),
 });

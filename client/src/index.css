@@ -18,6 +18,12 @@
   textarea:-ms-input-placeholder { opacity: 0.01; color: inherit; }
   input::-ms-input-placeholder,
   textarea::-ms-input-placeholder { opacity: 0.01; color: inherit; }
+  
+  /* Ensure dropdown options have black text for better readability */
+  option {
+    color: #000000;
+    background-color: #ffffff;
+  }
 }
 
 html, body, #root {
@@ -212,6 +218,7 @@ body {
   .input-field {
     @apply w-full px-4 py-3 bg-white/[0.01] backdrop-blur-0 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent text-white placeholder-gray-400 transition-all duration-300;
   }
+  
   
   .form-label {
     @apply block text-sm font-medium text-gray-300 mb-2;
